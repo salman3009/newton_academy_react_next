@@ -1,0 +1,6 @@
+Page routing:
+https://nextjs.org/learn-pages-router/basics/create-nextjs-app
+
+App routing:
+https://www.freecodecamp.org/news/routing-in-nextjs/
+

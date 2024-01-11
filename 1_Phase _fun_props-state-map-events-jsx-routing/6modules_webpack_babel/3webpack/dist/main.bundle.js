@@ -1,0 +1,1 @@
+(()=>{"use strict";let o=(33,55,console.log("addition"),88);console.log(o);let l=(console.log("subtraction"),-4);console.log(l)})();
