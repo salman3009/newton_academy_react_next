@@ -13,7 +13,7 @@ export default function Home() {
     try {
       const response = await fetch(apiUrl);
       const data = await response.json();
-
+      console.log(data.properties.timeseries);
       setForecastData(data.properties.timeseries.slice(0, 30));
     } catch (error) {
       console.error(error);
