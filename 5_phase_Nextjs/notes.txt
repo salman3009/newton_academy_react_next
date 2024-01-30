@@ -4,3 +4,5 @@ https://nextjs.org/learn-pages-router/basics/create-nextjs-app
 App routing:
 https://www.freecodecamp.org/news/routing-in-nextjs/
 
+Creating app:
+npx create-next-app your-app-name
