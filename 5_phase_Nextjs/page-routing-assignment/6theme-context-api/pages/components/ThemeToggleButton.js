@@ -2,7 +2,7 @@
 import React from 'react';
 import { ThemeContext } from './ThemeProvider';
 
-const ThemeToggleButton = () => {
+export const ThemeToggleButton = () => {
   const { theme, toggleTheme } = React.useContext(ThemeContext);
 
   return (
