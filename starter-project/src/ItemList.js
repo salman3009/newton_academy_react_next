@@ -10,4 +10,4 @@ function ItemList({ items }) {
     );
 }
 
-export default React.memo(ItemList);
+export default ItemList;
