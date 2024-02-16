@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import KeyValueStore from './KeyValueStore';
-import './App.css';
+import '../styles/App.css';
 
 function App() {
   return (
