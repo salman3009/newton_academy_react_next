@@ -1,14 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useCallback } from 'react';
+import ItemList from './ItemList';
 
+export default function App() {
+    const [items, setItems] = useState([]);
+    const [message, setMessage] = useState('');
 
-function App() {
- 
-  return (
-    <div className="App">
-       <h1>Hello world</h1>
-    </div>
-  );
+    const addItem = useCallback(() => {
+        setItems(prevItems => [...prevItems, `Item ${prevItems.length + 1}`]);
+        setMessage('Item added successfully!');
+
+        setTimeout(() => {
+            setMessage('');
+        }, 3000);
+    }, [message]);  
+
+    
+
+    return (
+        <div>
+            <button onClick={addItem}>Add Item</button>
+            <ItemList items={items} />
+            {message && <p id='message'>{message}</p>}
+        </div>
+    );
 }
-
-export default App;
