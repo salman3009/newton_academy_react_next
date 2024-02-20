@@ -1,19 +1,10 @@
 import { useState, useMemo } from "react";
 
-const isPrimeNumber = (n) => {
+const isPrimeNumber = (num) => {
   console.log("Expensive calculation execution for prime");
-  let num = n;
-  if (num === 0 || num === 1) {
-    return false;
-  }
-  n--;
-  while (n > 1) {
-    if (num % n === 0) {
-      return false;
-    }
-    n--;
-  }
-  return true;
+  for (var i = 2; i < num; i++)
+  if (num % i === 0) return false;
+return num !== 1 && num !== 0;
 };
 
 const isArmstrongNumber = (number) => {

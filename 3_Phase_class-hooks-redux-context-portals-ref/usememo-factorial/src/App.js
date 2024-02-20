@@ -1,10 +1,14 @@
-"use client"
+
 import { useState } from 'react';
-import FactorialComponent from '../components/FactorialComponent';
-export default function Home() {
+import FactorialComponent from './FactorialComponent';
+export default function App() {
   
       const [num, setNum] = useState(5);
+      const [finalNumber,setFinalNumber] = useState(5);
       
+      const onClickHandler=()=>{
+        setFinalNumber(num);
+      }
   return (
     <div>
         <h1>Welcome to Next.js!</h1>
@@ -15,8 +19,9 @@ export default function Home() {
                     value={num} 
                     onChange={e => setNum(e.target.value)} 
                 />
+                <button onClick={onClickHandler}>Factorial</button>
                 FactorialComponent
-                <FactorialComponent num={num} />
+                <FactorialComponent num={finalNumber} />
             </section>
     </div>
 );
