@@ -1,15 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useUser } from '../helpers/UserProvider';
+import axios from 'axios';
 
 export const MusicPlayer = (selectedMusic) => {
 
   const audioRef = useRef();
   const [addedToWatchlist, setAddedToWatchlist] = useState(false);
+  debugger;
   const {getUser} = useUser();
-  const { thumbnail, title, artist, audio_url } = selectedMusic;
+  const { thumbnail, title, artist, audio_url,songId,heart } = selectedMusic;
+
   const artistList = artist && artist.map((item) => item.name).join(" & ");
 
   useEffect(() => {
+    setAddedToWatchlist(heart);
     audioRef.current.play();
   }, [selectedMusic])
 
@@ -38,7 +42,7 @@ export const MusicPlayer = (selectedMusic) => {
         <audio controls ref={audioRef} src={audio_url} />
 
         <div className="heart-icon">
-          {addedToWatchlist ? <i onClick={() => AddFavorite()} class="fa-solid fa-heart"></i> : <i class="fa-regular fa-heart"></i>}
+          {getUser && (addedToWatchlist ? <i class="fa-solid fa-heart"></i> : <i  onClick={() => AddFavorite(songId)} class="fa-regular fa-heart"></i>)}
         </div>
       </>
     </section>

@@ -10,14 +10,16 @@ function Library() {
   const [isLoading, setIsLoading] = useState(false);
   const [musicsList, setMusicList] = useState([]);
   const [selectedMusic, setMusic] = useState(null);
-  const {getUser} = useUser();
+  const { getUser } = useUser();
 
   const fetchMusics = async () => {
     try {
       setIsLoading(true);
-      const musics = await axios.get('https://academics.newtonschool.co/api/v1/music/favorites/like',{headers:{
-        Authorization:`Bearer ${getUser.token}`
-       }})
+      const musics = await axios.get('https://academics.newtonschool.co/api/v1/music/favorites/like', {
+        headers: {
+          Authorization: `Bearer ${getUser.token}`
+        }
+      })
       console.log("musics", musics.data.data);
       const musicListData = musics.data.data.songs;
       setMusicList(musicListData);
@@ -37,16 +39,21 @@ function Library() {
     setMusic(selectedMusic);
   }
 
-  const removeFavorite=(songId)=>{
-    axios.patch('https://academics.newtonschool.co/api/v1/music/favorites/like',{ "songId" : songId},{headers:{
-      Authorization:`Bearer ${getUser.token}`
-     }}).then((response)=>{
-              console.log(response);
-              alert("successfully removed");
-              fetchMusics();
-     }).catch((error)=>{
-                console.log(error);
-     })
+  const removeFavorite = (songId) => {
+    axios.patch('https://academics.newtonschool.co/api/v1/music/favorites/like', { "songId": songId }, {
+      headers: {
+        Authorization: `Bearer ${getUser.token}`
+      }
+    }).then((response) => {
+      console.log(response);
+      fetchMusics();
+    }).catch((error) => {
+      console.log(error);
+    })
+  }
+
+  if(!musicsList.length){
+    return <div style={{textAlign:'center'}}>No music found</div>
   }
 
   return (<>
@@ -56,20 +63,29 @@ function Library() {
       </div>
       <div className="right-bar">
         <section className="musicList-container">
-          {musicsList.map((music, i) => (
-            <MusicCard key={i}
-              title={music.title}
-              thumbnail={music.thumbnail}
-              artist={music.artist}
-              id={i}
-              setSelectedMusic={setMusicHandler}
-            />
-          ))}
+          {musicsList.map((music, i) => {
+            return (<>
+              <MusicCard key={i}
+                title={music.title}
+                thumbnail={music.thumbnail}
+                artist={[]}
+                library={true}
+                id={music._id}
+                setSelectedMusic={setMusicHandler}
+                removeFavorite={removeFavorite}
+              />
+             
+            </>)
+
+          })}
+
         </section>
+
       </div>
     </div>
     {selectedMusic && <section>
       <MusicPlayer thumbnail={selectedMusic.thumbnail}
+        heart={true}
         title={selectedMusic.title}
         artist={selectedMusic.artist}
         audio_url={selectedMusic.audio_url}

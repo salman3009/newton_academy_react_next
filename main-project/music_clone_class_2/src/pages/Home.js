@@ -48,6 +48,7 @@ function Home() {
               thumbnail={music.thumbnail}
               artist={music.artist}
               id={i}
+              library={false}
               setSelectedMusic={setMusicHandler}
             />
           ))}
@@ -56,6 +57,8 @@ function Home() {
     </div>
     {selectedMusic && <section>
       <MusicPlayer thumbnail={selectedMusic.thumbnail}
+        songId={selectedMusic._id}
+        heart={false}
         title={selectedMusic.title}
         artist={selectedMusic.artist}
         audio_url={selectedMusic.audio_url}

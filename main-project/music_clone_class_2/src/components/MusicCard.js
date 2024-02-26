@@ -2,7 +2,7 @@ import React from "react";
 
 function MusicCard(props) {
     
-  const { title, thumbnail, artist,id,setSelectedMusic} = props;
+  const { library,title, thumbnail, artist,id,setSelectedMusic,removeFavorite} = props;
   const artistList = artist.map((item) => item.name).join(" & ");
   return (
     <section
@@ -16,10 +16,10 @@ function MusicCard(props) {
         onClick={()=>setSelectedMusic(id)}
         className="bannerImg"
       />
-      <div>{title}</div>
-      <div className="artist" title="artistList">
+      <div>{title} {library && <i class="fa-solid fa-trash" onClick={() => { removeFavorite(id) }}></i> }</div>
+      {library &&<div className="artist" title="artistList">
         {artistList}
-      </div>
+      </div>}
     </section>
   );
 };
